@@ -1,0 +1,31 @@
+{
+	"name": "rixxi/user",
+	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"authors": [
+		{
+			"name": "Michal Gebauer",
+			"homepage": "http://mishak.net"
+		}
+	],
+	"support": {
+		"email": "mishak+rixxi@mishak.net",
+		"issues": "https://github.com/rixxi/user"
+	},
+	"require": {
+		"nette/nette": "@dev",
+		"kdyby/doctrine": "@dev",
+		"kdyby/annotations": "@dev",
+		"kdyby/events": "@dev",
+		"kdyby/translation": "@dev",
+		"rixxi/form-factory": "@dev"
+	},
+	"require-dev": {
+		"rixxi/lint": "@dev"
+	},
+	"autoload": {
+		"psr-0": {
+			"Rixxi\\User\\": "src/"
+		}
+	},
+	"minimum-stability": "dev"
+}
