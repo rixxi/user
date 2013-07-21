@@ -1,6 +1,6 @@
 <?php
 
-namespace Rixxi\User\DI;
+namespace Rixxi\User\DI\Extensions;
 
 use Kdyby;
 use Nette;
@@ -17,6 +17,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 			'backlink' => 'backlink',
 		)
 	);
+
 
 	/**
 	 * Returns associative array of Namespace => mapping definition
@@ -45,6 +46,9 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 			->addSetup('setRedirectAfter', $config['redirect'])
 			->addSetup('setUserExpiration', $config['expiration'])
 			->addSetup('setPresenterBacklinkParameter', $config['backlink']);
+
+		$container->addDefinition($this->prefix('signInForm'))
+			->setFactory($this->prefix('signInFormFactory'));
 
 		$container->addDefinition($this->prefix('passwordStrategy'), 'Rixxi\User\Security\CryptSha512PasswordStrategy');
 
