@@ -8,24 +8,24 @@ use Kdyby;
 class FindUserByUsernameOrEmailQuery extends Kdyby\Doctrine\QueryObject
 {
 	/** @var string */
-	private $usernameOrEmail;
+	private $nameOrEmail;
 
 
 	/**
-	 * @param string $usernameOrEmail
+	 * @param string $nameOrEmail
 	 */
-	public function __construct($usernameOrEmail)
+	public function __construct($nameOrEmail)
 	{
-		$this->usernameOrEmail = $usernameOrEmail;
+		$this->nameOrEmail = $nameOrEmail;
 	}
 
 
 	/** @inherit */
 	protected function doCreateQuery(Kdyby\Persistence\Queryable $repository)
 	{
-		return $repository->select()
-			->where('username = :usernameOrEmail OR email = :usernameOrEmail')
-			->setParameter('usernameOrEmail', $this->usernameOrEmail);
+		return $repository->select('user')
+			->where('name = :nameOrEmail OR email = :nameOrEmail')
+			->setParameter('nameOrEmail', $this->nameOrEmail);
 	}
 
 }
