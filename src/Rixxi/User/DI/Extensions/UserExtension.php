@@ -64,7 +64,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 			->setFactory('@doctrine.dao', array('Rixxi\User\Entities\User'));
 
 		$container->addDefinition($this->prefix('model'))
-			->setClass('Rixxi\User\Model', array('@doctrine.dao(Rixxi\User\Entities\User)'));
+			->setClass('Rixxi\User\Model', array($this->prefix('@repository')));
 
 		return $config;
 	}
