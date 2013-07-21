@@ -9,7 +9,8 @@ use Kdyby;
 /**
  * @property $name
  *
- * @Table(uniqueConstraints={@UniqueConstraint(name="unique_name", columns={"name"}))})
+ * @ORM\Entity
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_name", columns={"name"})})
  */
 class Role extends Kdyby\Doctrine\Entities\IdentifiedEntity
 {

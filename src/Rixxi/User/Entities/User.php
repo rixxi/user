@@ -12,7 +12,8 @@ use Rixxi;
  * @property $password
  * @property $roles
  *
- * @Table(uniqueConstraints={@UniqueConstraint(name="unique_name", columns={"name"}), @UniqueConstraint(name="unique_email", columns={"email"})})
+ * @ORM\Entity
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_name", columns={"name"}), @ORM\UniqueConstraint(name="unique_email", columns={"email"})})
  */
 class User extends Kdyby\Doctrine\Entities\IdentifiedEntity implements Rixxi\User\IUser
 {
@@ -36,7 +37,7 @@ class User extends Kdyby\Doctrine\Entities\IdentifiedEntity implements Rixxi\Use
 	private $password;
 
 	/**
-	 * @ORM\OneToMany(entity="Role",type="string")
+	 * @ORM\ManyToMany(targetEntity="Role")
 	 * @var string
 	 */
 	private $roles;
