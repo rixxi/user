@@ -27,7 +27,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 	function getEntityMappings()
 	{
 		return array(
-			'Rixxi\\User\\Entities' => __DIR__ . '/Rixxi/User/Entities',
+			'Rixxi\\User\\Entities' => __DIR__ . '/../../Entities',
 		);
 	}
 
