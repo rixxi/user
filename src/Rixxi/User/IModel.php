@@ -8,10 +8,10 @@ interface IModel
 
 	/**
 	 * Retrieves user by username or email
-	 * @param string $usernameOrEmail
+	 * @param string $nameOrEmail
 	 * @return IUser|NULL
 	 */
-	function getByUsernameOrEmail($usernameOrEmail);
+	function getByNameOrEmail($nameOrEmail);
 
 	/**
 	 * Return all roles associated with user

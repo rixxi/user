@@ -18,9 +18,9 @@ class Model extends Nette\Object implements IModel
 	}
 
 
-	public function getByUsernameOrEmail($usernameOrEmail)
+	public function getByNameOrEmail($nameOrEmail)
 	{
-		return $this->repository->fetchOne(new Queries\FindUserByUsernameOrEmailQuery($usernameOrEmail));
+		return $this->repository->fetchOne(new Queries\FindUserByUsernameOrEmailQuery($nameOrEmail));
 	}
 
 
