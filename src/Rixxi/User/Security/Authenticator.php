@@ -11,14 +11,14 @@ use Rixxi;
 
 class Authenticator extends Nette\Object implements Nette\Security\IAuthenticator
 {
-	/** @var Rixxi\User\Model */
+	/** @var Rixxi\User\IModel */
 	private $model;
 
 	/** @var Rixxi\User\Security\IPasswordStrategy */
 	private $passwordStrategy;
 
 
-	public function __construct(Rixxi\User\Model $model, IPasswordStrategy $passwordStrategy)
+	public function __construct(Rixxi\User\IModel $model, IPasswordStrategy $passwordStrategy)
 	{
 		$this->model = $model;
 		$this->passwordStrategy = $passwordStrategy;
