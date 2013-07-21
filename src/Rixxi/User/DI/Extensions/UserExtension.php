@@ -5,9 +5,11 @@ namespace Rixxi\User\DI\Extensions;
 use Kdyby;
 use Nette;
 use Nette\Utils\Validators;
+use Nette\DI\Statement;
+use Rixxi\Modular\DI\Extensions\IPresenterMappingProvider;
 
 
-class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine\DI\IEntityProvider
+class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine\DI\IEntityProvider, IPresenterMappingProvider
 {
 
 	private $defaults = array(
@@ -28,6 +30,14 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 	{
 		return array(
 			'Rixxi\\User\\Entities' => __DIR__ . '/../../Entities',
+		);
+	}
+
+
+	function getPresenterMapping()
+	{
+		return array(
+			'User' => 'Rixxi\User\Presenters\*Presenter',
 		);
 	}
 

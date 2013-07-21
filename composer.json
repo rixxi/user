@@ -17,7 +17,8 @@
 		"kdyby/annotations": "@dev",
 		"kdyby/events": "@dev",
 		"kdyby/translation": "@dev",
-		"rixxi/form-factory": "@dev"
+		"rixxi/form-factory": "@dev",
+		"rixxi/modular": "@dev"
 	},
 	"require-dev": {
 		"rixxi/lint": "@dev"
