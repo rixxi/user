@@ -5,7 +5,7 @@ namespace Rixxi\User\Queries;
 use Kdyby;
 
 
-class FindUserByUsernameOrEmailQuery extends Kdyby\Doctrine\QueryObject
+class FindUserByNameOrEmailQuery extends Kdyby\Doctrine\QueryObject
 {
 	/** @var string */
 	private $nameOrEmail;
