@@ -38,6 +38,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 
 		$config = $this->getConfig($this->defaults);
 
+		Validators::assertField($config, 'signIn', 'array');
 		Validators::assertField($config['signIn'], 'redirect', 'string');
 		Validators::assertField($config['signIn'], 'expiration', 'string');
 		Validators::assertField($config['signIn'], 'backlink', 'string');
