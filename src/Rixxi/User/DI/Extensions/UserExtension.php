@@ -50,7 +50,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 			->addSetup('setPresenterBacklinkParameter', $config['signIn']['backlink']);
 
 		$container->addDefinition($this->prefix('signInForm'))
-			->setFactory($this->prefix('signInFormFactory'));
+			->setFactory($this->prefix('@signInFormFactory'));
 
 		$container->addDefinition($this->prefix('passwordStrategy'))
 			->setClass('Rixxi\User\Security\CryptSha512PasswordStrategy');
