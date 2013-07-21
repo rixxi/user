@@ -43,7 +43,8 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 		Validators::assertField($config['signIn'], 'expiration', 'string');
 		Validators::assertField($config['signIn'], 'backlink', 'string');
 
-		$container->addDefinition($this->prefix('signInFormFactory'), 'Rixxi\User\Application\UI\SignInFormFactory')
+		$container->addDefinition($this->prefix('signInFormFactory'))
+			->setClass('Rixxi\User\Application\UI\SignInFormFactory')
 			->addSetup('setRedirectAfter', $config['redirect'])
 			->addSetup('setUserExpiration', $config['expiration'])
 			->addSetup('setPresenterBacklinkParameter', $config['backlink']);
@@ -51,7 +52,8 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 		$container->addDefinition($this->prefix('signInForm'))
 			->setFactory($this->prefix('signInFormFactory'));
 
-		$container->addDefinition($this->prefix('passwordStrategy'), 'Rixxi\User\Security\CryptSha512PasswordStrategy');
+		$container->addDefinition($this->prefix('passwordStrategy'))
+			->setClass('Rixxi\User\Security\CryptSha512PasswordStrategy');
 
 		$container->addDefinition($this->prefix('authenticator'))
 			->setClass('Rixxi\User\Security\Authenticator', array($config['users']));
