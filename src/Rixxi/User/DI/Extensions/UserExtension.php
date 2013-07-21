@@ -55,8 +55,10 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 		$container->addDefinition($this->prefix('passwordStrategy'))
 			->setClass('Rixxi\User\Security\CryptSha512PasswordStrategy');
 
-		$container->addDefinition($this->prefix('authenticator'))
-			->setClass('Rixxi\User\Security\Authenticator');
+		if (NULL === $container->getByType('Nette\Security\IAuthenticator')) {
+			$container->addDefinition($this->prefix('authenticator'))
+				->setClass('Rixxi\User\Security\Authenticator');
+		}
 
 		$container->addDefinition($this->prefix('model'))
 			->setClass('Rixxi\User\Model', array('@doctrine.dao(Rixxi\User\Entities\User)'));
