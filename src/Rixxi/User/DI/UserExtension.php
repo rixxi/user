@@ -6,10 +6,10 @@ use Kdyby;
 use Nette;
 use Nette\Utils\Validators;
 use Nette\DI\Statement;
-use Rixxi\Modular\DI\IPresenterMappingProvider;
+use Rixxi;
 
 
-class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine\DI\IEntityProvider, IPresenterMappingProvider
+class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine\DI\IEntityProvider, Rixxi\Modular\DI\IPresenterMappingProvider
 {
 
 	private $defaults = array(
