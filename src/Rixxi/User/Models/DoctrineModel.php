@@ -1,12 +1,14 @@
 <?php
 
-namespace Rixxi\User;
+namespace Rixxi\User\Models;
 
 use Kdyby;
 use Nette;
+use Rixxi\User\Queries\FindUserByNameOrEmailQuery;
+use Rixxi;
 
 
-class Model extends Nette\Object implements IModel
+class DoctrineModel extends Nette\Object implements Rixxi\User\IModel
 {
 	/** @var \Kdyby\Doctrine\EntityDao */
 	private $repository;
@@ -20,11 +22,11 @@ class Model extends Nette\Object implements IModel
 
 	public function getByNameOrEmail($nameOrEmail)
 	{
-		return $this->repository->fetchOne(new Queries\FindUserByNameOrEmailQuery($nameOrEmail));
+		return $this->repository->fetchOne(new FindUserByNameOrEmailQuery($nameOrEmail));
 	}
 
 
-	public function getRoles(IUser $user)
+	public function getRoles(Rixxi\User\IUser $user)
 	{
 		$roles = array('user');
 		foreach ($user->getRoles() as $role) {
