@@ -5,12 +5,14 @@ namespace Rixxi\User\DI;
 use Kdyby;
 use Nette;
 use Nette\Utils\Validators;
-use Nette\DI\Statement;
 use Rixxi;
 
 
 class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine\DI\IEntityProvider, Rixxi\Modular\DI\IPresenterMappingProvider
 {
+
+	use Rixxi\Modular\DI\CompilerExtensionSugar;
+
 
 	private $defaults = array(
 		'signIn' => array(
@@ -47,6 +49,8 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 		$container = $this->getContainerBuilder();
 
 		$config = $this->getConfig($this->defaults);
+
+		$this->loadConfig('console');
 
 		Validators::assertField($config, 'signIn', 'array');
 		Validators::assertField($config['signIn'], 'redirect', 'string');

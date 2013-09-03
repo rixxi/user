@@ -1,0 +1,5 @@
+services:
+	create:
+		class: Rixxi\User\Commands\CreateCommand
+		tags: [kdyby.console.command]
+		autowired: no
