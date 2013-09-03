@@ -7,7 +7,7 @@ use Kdyby;
 
 
 /**
- * @property $name
+ * @property string $name
  *
  * @ORM\Entity
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_name", columns={"name"})})

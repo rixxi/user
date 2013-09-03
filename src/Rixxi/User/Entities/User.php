@@ -8,10 +8,10 @@ use Kdyby;
 use Rixxi;
 
 /**
- * @property $name
- * @property $email
- * @property $password
- * @property $roles
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property Role[]|ArrayCollection $roles
  *
  * @ORM\Entity
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_name", columns={"name"}), @ORM\UniqueConstraint(name="unique_email", columns={"email"})})
