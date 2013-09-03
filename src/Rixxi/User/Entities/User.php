@@ -2,6 +2,7 @@
 
 namespace Rixxi\User\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Kdyby;
 use Rixxi;
@@ -38,7 +39,7 @@ class User extends Kdyby\Doctrine\Entities\IdentifiedEntity implements Rixxi\Use
 
 	/**
 	 * @ORM\ManyToMany(targetEntity="Role")
-	 * @var string
+	 * @var Role[]|ArrayCollection
 	 */
 	protected $roles;
 
@@ -52,6 +53,12 @@ class User extends Kdyby\Doctrine\Entities\IdentifiedEntity implements Rixxi\Use
 	public function setPassword($password)
 	{
 		$this->password = $password;
+	}
+
+
+	public function __construct()
+	{
+		$this->roles = new ArrayCollection;
 	}
 
 }
