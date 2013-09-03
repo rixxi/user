@@ -11,6 +11,7 @@ use Rixxi;
 
 class Authenticator extends Nette\Object implements Nette\Security\IAuthenticator
 {
+
 	/** @var Rixxi\User\IModel */
 	private $model;
 

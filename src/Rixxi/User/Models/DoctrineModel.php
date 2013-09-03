@@ -10,6 +10,7 @@ use Rixxi;
 
 class DoctrineModel extends Nette\Object implements Rixxi\User\IModel
 {
+
 	/** @var \Kdyby\Doctrine\EntityDao */
 	private $repository;
 
@@ -34,4 +35,5 @@ class DoctrineModel extends Nette\Object implements Rixxi\User\IModel
 		}
 		return array_unique($roles);
 	}
+
 }
