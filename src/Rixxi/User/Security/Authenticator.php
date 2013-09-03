@@ -40,8 +40,7 @@ class Authenticator extends Nette\Object implements Nette\Security\IAuthenticato
 			throw new AuthenticationException('Invalid password.', self::INVALID_CREDENTIAL);
 		}
 
-		unset($user->password);
-		return new Identity($user->getId(), $this->model->getRoles($user), $user->toArray());
+		return new Identity($user->getId(), $this->model->getRoles($user));
 	}
 
 }
