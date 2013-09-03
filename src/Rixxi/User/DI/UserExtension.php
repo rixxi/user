@@ -26,7 +26,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 	 *
 	 * @return array
 	 */
-	function getEntityMappings()
+	public function getEntityMappings()
 	{
 		return array(
 			'Rixxi\\User\\Entities' => __DIR__ . '/../Entities',
@@ -34,7 +34,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 	}
 
 
-	function getPresenterMapping()
+	public function getPresenterMapping()
 	{
 		return array(
 			'User' => 'Rixxi\User\Presenters\*Presenter',
