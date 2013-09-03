@@ -22,25 +22,25 @@ class User extends Kdyby\Doctrine\Entities\IdentifiedEntity implements Rixxi\Use
 	 * @ORM\Column(type="string",columnDefinition="VARCHAR(255) COLLATE 'utf8_general_ci' NOT NULL")
 	 * @var string
 	 */
-	private $name;
+	protected $name;
 
 	/**
 	 * @ORM\Column(type="string",columnDefinition="VARCHAR(254) COLLATE 'utf8_general_ci' NOT NULL")
 	 * @var string
 	 */
-	private $email;
+	protected $email;
 
 	/**
 	 * @ORM\Column(type="string")
 	 * @var string
 	 */
-	private $password;
+	protected $password;
 
 	/**
 	 * @ORM\ManyToMany(targetEntity="Role")
 	 * @var string
 	 */
-	private $roles;
+	protected $roles;
 
 
 	public function getPassword()
