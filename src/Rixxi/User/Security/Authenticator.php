@@ -30,7 +30,7 @@ class Authenticator extends Nette\Object implements Nette\Security\IAuthenticato
 	{
 		list($username, $password) = $credentials;
 
-		$user = $this->model->getByUsernameOrEmail($username);
+		$user = $this->model->getByNameOrEmail($username);
 
 		if (!$user) {
 			throw new AuthenticationException('User not found.', self::IDENTITY_NOT_FOUND);
