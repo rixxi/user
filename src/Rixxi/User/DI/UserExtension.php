@@ -59,9 +59,9 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 
 		$container->addDefinition($this->prefix('signInFormFactory'))
 			->setClass('Rixxi\User\Application\UI\SignInFormFactory')
-			->addSetup('setRedirectAfter', $config['signIn']['redirect'])
-			->addSetup('setUserExpiration', $config['signIn']['expiration'])
-			->addSetup('setBacklinkParameter', $config['signIn']['backlink']);
+			->addSetup('setRedirectAfter', array($config['signIn']['redirect']))
+			->addSetup('setUserExpiration', array($config['signIn']['expiration']))
+			->addSetup('setBacklinkParameter', array($config['signIn']['backlink']));
 
 		$container->addDefinition($this->prefix('signInForm'))
 			->setFactory($this->prefix('@signInFormFactory'));
