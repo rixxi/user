@@ -10,6 +10,9 @@ use Rixxi\User\IUser;
 final class CryptSha512PasswordStrategy extends Nette\Object implements IPasswordStrategy
 {
 
+	const PASSWORD_MAX_LENGTH = 4098;
+
+
 	/** @var int */
 	private $rounds = 5000;
 
@@ -44,7 +47,7 @@ final class CryptSha512PasswordStrategy extends Nette\Object implements IPasswor
 
 	private function calculateHash($password, $hash = NULL)
 	{
-		return crypt($password, $hash ?: '$6$rounds=' . $this->rounds . '$' . Strings::random(8) . '$');
+		return crypt(substr($password, 0, self::PASSWORD_MAX_LENGTH), $hash ?: '$6$rounds=' . $this->rounds . '$' . Strings::random(8) . '$');
 	}
 
 }
