@@ -32,19 +32,19 @@ final class CryptSha512PasswordStrategy extends Nette\Object implements IPasswor
 
 	public function matchPassword(IUser $user, $password)
 	{
-		return $user->getPassword() === crypt($password, $user->getPassword());
+		return $user->getPassword() === $this->calculateHash($password, $user->getPassword());
 	}
 
 
 	public function setPassword(IUser $user, $password)
 	{
-		$user->setPassword(crypt($password, $this->computeHash()));
+		$user->setPassword($this->calculateHash($password));
 	}
 
 
-	private function computeHash()
+	private function calculateHash($password, $hash = NULL)
 	{
-		return '$6$rounds=' . $this->rounds . '$' . Strings::random(8) . '$';
+		return crypt($password, $hash ?: '$6$rounds=' . $this->rounds . '$' . Strings::random(8) . '$');
 	}
 
 }
