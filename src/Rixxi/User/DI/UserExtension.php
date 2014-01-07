@@ -63,9 +63,6 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 			->addSetup('setUserExpiration', array($config['signIn']['expiration']))
 			->addSetup('setBacklinkParameter', array($config['signIn']['backlink']));
 
-		$container->addDefinition($this->prefix('signInForm'))
-			->setFactory($this->prefix('@signInFormFactory'));
-
 		$container->addDefinition($this->prefix('passwordStrategy'))
 			->setClass('Rixxi\User\Security\CryptSha512PasswordStrategy');
 
