@@ -81,7 +81,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 			->setClass('Rixxi\User\Models\DoctrineModel', array($this->prefix('@repository')));
 
 		$container->addDefinition($this->prefix('userFactory'))
-		->setClass('Rixxi\User\Factories\UserFactory', array($this->prefix('@repository')));
+			->setClass('Rixxi\User\Factories\UserFactory', array($this->prefix('@repository')));
 
 		return $config;
 	}
