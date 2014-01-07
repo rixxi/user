@@ -9,6 +9,9 @@ use Rixxi;
 class SignInFormFactory extends Nette\Object
 {
 
+	/** @var callback[] */
+	public $onBeforeFormCreated = array();
+
 	/** @var Rixxi\IFormFactory */
 	private $formFactory;
 
@@ -80,6 +83,8 @@ class SignInFormFactory extends Nette\Object
 
 		// call method signInFormSucceeded() on success
 		$form->onSuccess[] = $this->onSuccess;
+
+		$this->onBeforeFormCreated($form);
 
 		return $form;
 	}
