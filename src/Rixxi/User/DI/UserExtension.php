@@ -8,7 +8,7 @@ use Nette\Utils\Validators;
 use Rixxi;
 
 
-class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine\DI\IEntityProvider, Rixxi\Modular\DI\IPresenterMappingProvider
+class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine\DI\IEntityProvider
 {
 
 	use Rixxi\Modular\DI\CompilerExtensionSugar;
@@ -35,14 +35,6 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 	{
 		return array(
 			'Rixxi\\User\\Entities' => __DIR__ . '/../Entities',
-		);
-	}
-
-
-	public function getPresenterMapping()
-	{
-		return array(
-			'User' => 'Rixxi\User\Presenters\*Presenter',
 		);
 	}
 
