@@ -26,10 +26,17 @@ class Listener extends Nette\Object implements Kdyby\Events\Subscriber
 	}
 
 
+	public function onLoggedOut(SecurityUser $user)
+	{
+		$this->user->signOut();
+	}
+
+
 	public function getSubscribedEvents()
 	{
 		return array(
 			'Nette\Security\User::onLoggedIn',
+			'Nette\Security\User::onLoggedOut',
 		);
 	}
 

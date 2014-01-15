@@ -17,6 +17,9 @@ class User extends Nette\Object
 	/** @var callback[] */
 	public $onSignIn = array();
 
+	/** @var callback[] */
+	public $onSignOut = array();
+
 	/** @var \Rixxi\Event\Redirector */
 	private $redirector;
 
@@ -58,6 +61,13 @@ class User extends Nette\Object
 			}
 		}
 
+		$this->redirector->handle($event);
+	}
+
+
+	public function signOut()
+	{
+		$this->onSignOut($event = new SignOutEvent);
 		$this->redirector->handle($event);
 	}
 

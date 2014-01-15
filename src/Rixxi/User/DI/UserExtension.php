@@ -19,7 +19,10 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 			'redirect' => NULL,
 			'expiration' => NULL,
 			'backlink' => NULL,
-		)
+		),
+		'signOut' => array(
+			'redirect' => NULL,
+		),
 	);
 
 
@@ -87,6 +90,9 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 
 		if ($config['signIn']['redirect'] !== NULL) {
 			$user->addSetup('?->onSignIn[] = ?', array('@self', new Nette\DI\Statement('Rixxi\Event\Helper::defaultRedirect(?)', array($config['signIn']['redirect']))));
+		}
+		if ($config['signOut']['redirect'] !== NULL) {
+			$user->addSetup('?->onSignOut[] = ?', array('@self', new Nette\DI\Statement('Rixxi\Event\Helper::defaultRedirect(?)', array($config['signOut']['redirect']))));
 		}
 
 		return $config;
