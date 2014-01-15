@@ -16,9 +16,9 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 
 	private $defaults = array(
 		'signIn' => array(
-			'redirect' => ':Homepage:Default:',
-			'expiration' => '0',
-			'backlink' => 'backlink',
+			'redirect' => NULL,
+			'expiration' => NULL,
+			'backlink' => NULL,
 		)
 	);
 
@@ -53,9 +53,9 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 		$this->loadConfig('console');
 
 		Validators::assertField($config, 'signIn', 'array');
-		Validators::assertField($config['signIn'], 'redirect', 'string');
-		Validators::assertField($config['signIn'], 'expiration', 'string');
-		Validators::assertField($config['signIn'], 'backlink', 'string');
+		Validators::assertField($config['signIn'], 'redirect', 'string|null');
+		Validators::assertField($config['signIn'], 'expiration', 'string|int|null');
+		Validators::assertField($config['signIn'], 'backlink', 'string|null');
 
 		$container->addDefinition($this->prefix('signInFormFactory'))
 			->setClass('Rixxi\User\Application\UI\SignInFormFactory');
