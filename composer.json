@@ -21,9 +21,6 @@
 		"rixxi/form-factory": "@dev",
 		"rixxi/modular": "@dev"
 	},
-	"require-dev": {
-		"rixxi/lint": "@dev"
-	},
 	"autoload": {
 		"psr-0": {
 			"Rixxi\\User\\": "src/"
