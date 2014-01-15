@@ -18,11 +18,6 @@ class SignInFormFactory extends Nette\Object
 	/** @var Nette\Security\User */
 	private $user;
 
-	private $redirectAfter;
-
-	/** @var string|NULL */
-	private $backlinkParameter = NULL;
-
 	/** @var string|int|DateTime */
 	private $userExpiration = 0;
 
@@ -31,37 +26,6 @@ class SignInFormFactory extends Nette\Object
 	{
 		$this->formFactory = $formFactory;
 		$this->user = $user;
-	}
-
-
-	/**
-	 * Link to redirect to on login
-	 * @param $redirectAfter
-	 */
-	public function setRedirectAfter($redirectAfter)
-	{
-		$this->redirectAfter = $redirectAfter;
-	}
-
-
-	/**
-	 * Sets backlink parameter which stores key for restoring requests
-	 *
-	 * @var string|NULL
-	 */
-	public function setBacklinkParameter($backlinkParameter)
-	{
-		$this->backlinkParameter = $backlinkParameter;
-	}
-
-
-	/**
-	 * Sets session expiration on login
-	 * @var string|int|DateTime
-	 */
-	public function setUserExpiration($userExpiration)
-	{
-		$this->userExpiration = $userExpiration;
 	}
 
 
@@ -94,8 +58,6 @@ class SignInFormFactory extends Nette\Object
 	{
 		$values = $form->getValues();
 
-		$this->user->setExpiration($this->userExpiration);
-
 		try {
 			$this->user->login($values->username, $values->password);
 
@@ -104,11 +66,6 @@ class SignInFormFactory extends Nette\Object
 
 			return;
 		}
-
-		if (NULL !== $this->backlinkParameter && isset($form->getPresenter()->{$this->backlinkParameter})) {
-			$form->getPresenter()->restoreRequest($form->getPresenter()->{$this->backlinkParameter});
-		}
-		$form->getPresenter()->redirect($this->redirectAfter);
 	}
 
 }

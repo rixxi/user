@@ -58,10 +58,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 		Validators::assertField($config['signIn'], 'backlink', 'string');
 
 		$container->addDefinition($this->prefix('signInFormFactory'))
-			->setClass('Rixxi\User\Application\UI\SignInFormFactory')
-			->addSetup('setRedirectAfter', array($config['signIn']['redirect']))
-			->addSetup('setUserExpiration', array($config['signIn']['expiration']))
-			->addSetup('setBacklinkParameter', array($config['signIn']['backlink']));
+			->setClass('Rixxi\User\Application\UI\SignInFormFactory');
 
 		$container->addDefinition($this->prefix('passwordStrategy'))
 			->setClass('Rixxi\User\Security\CryptSha512PasswordStrategy');
@@ -79,6 +76,18 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 
 		$container->addDefinition($this->prefix('userFactory'))
 			->setClass('Rixxi\User\Factories\UserFactory', array($this->prefix('@repository')));
+
+		$container->addDefinition($this->prefix('listener'))
+			->setClass('Rixxi\User\Listener')
+			->addTag(Kdyby\Events\DI\EventsExtension::SUBSCRIBER_TAG)
+			->setAutowired(FALSE);
+
+		$user = $container->addDefinition($this->prefix('user'))
+			->setClass('Rixxi\User\User', array(3 => $config['signIn']['expiration'], $config['signIn']['backlink']));
+
+		if ($config['signIn']['redirect'] !== NULL) {
+			$user->addSetup('?->onSignIn[] = ?', array('@self', new Nette\DI\Statement('Rixxi\Event\Helper::defaultRedirect(?)', array($config['signIn']['redirect']))));
+		}
 
 		return $config;
 	}

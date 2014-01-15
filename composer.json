@@ -19,7 +19,8 @@
 		"kdyby/translation": "@dev",
 		"kdyby/console": "@dev",
 		"rixxi/form-factory": "@dev",
-		"rixxi/modular": "@dev"
+		"rixxi/modular": "@dev",
+		"rixxi/event": "@dev"
 	},
 	"autoload": {
 		"psr-0": {
