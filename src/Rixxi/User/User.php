@@ -68,6 +68,8 @@ class User extends Nette\Object
 	public function signOut()
 	{
 		$this->onSignOut($event = new SignOutEvent);
+		// BUG: Nette\Security\User 2.1 fires onLoggedOut before clearing storage
+		$this->security->getStorage()->setAuthenticated(FALSE);
 		$this->redirector->handle($event);
 	}
 
