@@ -41,6 +41,8 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 
 	public function loadConfiguration()
 	{
+		$doctrine = $this->getCompilerExtension('Kdyby\Doctrine\DI\OrmExtension');
+
 		$container = $this->getContainerBuilder();
 
 		$config = $this->getConfig($this->defaults);
@@ -64,7 +66,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 		}
 
 		$container->addDefinition($this->prefix('repository'))
-			->setFactory('@doctrine.dao', array('Rixxi\User\Entities\User'));
+			->setFactory($doctrine->prefix('@dao'), array('Rixxi\User\Entities\User'));
 
 		$container->addDefinition($this->prefix('model'))
 			->setClass('Rixxi\User\Models\DoctrineModel', array($this->prefix('@repository')));
