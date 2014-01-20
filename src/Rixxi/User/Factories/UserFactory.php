@@ -58,6 +58,8 @@ class UserFactory extends Nette\Object
 		}
 
 		$this->repository->save($user);
+
+		return $user;
 	}
 
 }
