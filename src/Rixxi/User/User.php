@@ -9,6 +9,7 @@ use Rixxi\Event\Redirector;
 use Rixxi\Event\Helper as EventHelper;
 use Rixxi\User\Events\SignInEvent;
 use Rixxi\User\Events\SignOutEvent;
+use Rixxi\User\IUser;
 
 
 class User extends Nette\Object
@@ -46,9 +47,9 @@ class User extends Nette\Object
 	}
 
 
-	public function signIn()
+	public function signIn(IUser $user)
 	{
-		$this->onSignIn($event = new SignInEvent);
+		$this->onSignIn($event = new SignInEvent($user));
 
 		if ($this->expiration !== NULL) {
 			$this->security->setExpiration($this->expiration);
@@ -65,11 +66,9 @@ class User extends Nette\Object
 	}
 
 
-	public function signOut()
+	public function signOut(IUser $user)
 	{
-		$this->onSignOut($event = new SignOutEvent);
-		// BUG: Nette\Security\User 2.1 fires onLoggedOut before clearing storage
-		$this->security->getStorage()->setAuthenticated(FALSE);
+		$this->onSignOut($event = new SignOutEvent($user));
 		$this->redirector->handle($event);
 	}
 
