@@ -12,6 +12,9 @@ final class CryptSha512PasswordStrategy extends Nette\Object implements IPasswor
 
 	const PASSWORD_MAX_LENGTH = 4098;
 
+	const ROUNDS_MIN = 1000;
+
+	const ROUNDS_MAX = 999999999;
 
 	/** @var int */
 	private $rounds = 5000;
@@ -25,8 +28,8 @@ final class CryptSha512PasswordStrategy extends Nette\Object implements IPasswor
 	public function setRounds($rounds)
 	{
 		$rounds = (int) $rounds;
-		if ($rounds < 1000 || 999999999 < $rounds) {
-			throw new Nette\ArgumentOutOfRangeException;
+		if ($rounds < self::ROUNDS_MIN || self::ROUNDS_MAX < $rounds) {
+			throw new Nette\ArgumentOutOfRangeException("Rounds must be between " . self::ROUNDS_MIN . " and " . self::ROUNDS_MAX . ", value $rounds given.");
 		}
 
 		$this->rounds = $rounds;
