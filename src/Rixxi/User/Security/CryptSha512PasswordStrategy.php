@@ -25,7 +25,7 @@ final class CryptSha512PasswordStrategy extends Nette\Object implements IPasswor
 	public function setRounds($rounds)
 	{
 		$rounds = (int) $rounds;
-		if ($rounds > 1000 && 999999999 < $rounds) {
+		if ($rounds < 1000 || 999999999 < $rounds) {
 			throw new Nette\ArgumentOutOfRangeException;
 		}
 
