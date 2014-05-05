@@ -18,7 +18,7 @@
 		"kdyby/events": "@dev",
 		"kdyby/translation": "@dev",
 		"kdyby/console": "@dev",
-		"rixxi/form-factory": "@dev",
+		"rixxi/form-factory": "~1.0",
 		"rixxi/modular": "@dev",
 		"rixxi/event": "@dev"
 	},

@@ -3,7 +3,7 @@
 namespace Rixxi\User\Application\UI;
 
 use Nette;
-use Rixxi;
+use Rixxi\FormFactory\IFormFactory;
 
 
 class SignInFormFactory extends Nette\Object
@@ -12,14 +12,14 @@ class SignInFormFactory extends Nette\Object
 	/** @var callback[] */
 	public $onBeforeFormCreated = array();
 
-	/** @var Rixxi\IFormFactory */
+	/** @var IFormFactory */
 	private $formFactory;
 
 	/** @var Nette\Security\User */
 	private $user;
 
 
-	public function __construct(Rixxi\IFormFactory $formFactory, Nette\Security\User $user)
+	public function __construct(IFormFactory $formFactory, Nette\Security\User $user)
 	{
 		$this->formFactory = $formFactory;
 		$this->user = $user;
@@ -32,7 +32,7 @@ class SignInFormFactory extends Nette\Object
 	 */
 	public function createSignInForm()
 	{
-		$form = $this->formFactory->createForm();
+		$form = $this->formFactory->create();
 
 		$form->addText('username', 'Username:')
 			->setRequired('Please enter your username.');
