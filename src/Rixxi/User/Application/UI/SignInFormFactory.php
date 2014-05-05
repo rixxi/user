@@ -18,9 +18,6 @@ class SignInFormFactory extends Nette\Object
 	/** @var Nette\Security\User */
 	private $user;
 
-	/** @var string|int|DateTime */
-	private $userExpiration = 0;
-
 
 	public function __construct(Rixxi\IFormFactory $formFactory, Nette\Security\User $user)
 	{
