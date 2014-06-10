@@ -35,10 +35,10 @@ class SignInFormFactory extends Nette\Object
 		$form = $this->formFactory->create();
 
 		$form->addText('username', 'Username:')
-			->setRequired('Please enter your username.');
+			->setRequired();
 
 		$form->addPassword('password', 'Password:')
-			->setRequired('Please enter your password.');
+			->setRequired();
 
 		$form->addSubmit('send', 'Sign in');
 
