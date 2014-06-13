@@ -12,12 +12,12 @@
 		"issues": "https://github.com/rixxi/user"
 	},
 	"require": {
-		"nette/nette": "@dev",
-		"kdyby/doctrine": "@dev",
-		"kdyby/events": "@dev",
-		"kdyby/console": "@dev",
+		"nette/nette": "~2.1",
+		"kdyby/doctrine": "~1.0|~2.0",
+		"kdyby/events": "~2.1",
+		"kdyby/console": "~1.0|~2.0",
 		"rixxi/form-factory": "~1.0",
-		"rixxi/modular": "@dev"
+		"rixxi/modular": "~0.1"
 	},
 	"suggest": {
 		"rixxi/redirector": "~0.2"
