@@ -76,7 +76,7 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 
 		$container->addDefinition($this->prefix('listener'))
 			->setClass('Rixxi\User\Listener', array(1 => $this->prefix('@repository')))
-			->addTag(Kdyby\Events\DI\EventsExtension::SUBSCRIBER_TAG)
+			->addTag(Kdyby\Events\DI\EventsExtension::TAG_SUBSCRIBER)
 			->setAutowired(FALSE);
 
 		$container->addDefinition($this->prefix('signedUser'))
