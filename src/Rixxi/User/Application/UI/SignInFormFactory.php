@@ -30,7 +30,7 @@ class SignInFormFactory extends Nette\Object
 	 * Sign-in form factory.
 	 * @return Nette\Application\UI\Form
 	 */
-	public function createSignInForm()
+	public function create()
 	{
 		$form = $this->formFactory->create();
 
