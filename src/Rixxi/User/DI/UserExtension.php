@@ -82,14 +82,19 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 		$container->addDefinition($this->prefix('signedUser'))
 			->setClass('Rixxi\User\Models\SignedUser', array(1 => $this->prefix('@repository')));
 
-		$user = $container->addDefinition($this->prefix('user'))
+		$container->addDefinition($this->prefix('user'))
 			->setClass('Rixxi\User\User', array(3 => $config['signIn']['expiration'], $config['signIn']['backlink']));
 
-		if ($config['signIn']['redirect'] !== NULL) {
-			$user->addSetup('?->onSignIn[] = ?', array('@self', new Nette\DI\Statement('Rixxi\Event\Helper::defaultRedirect(?)', array($config['signIn']['redirect']))));
-		}
-		if ($config['signOut']['redirect'] !== NULL) {
-			$user->addSetup('?->onSignOut[] = ?', array('@self', new Nette\DI\Statement('Rixxi\Event\Helper::defaultRedirect(?)', array($config['signOut']['redirect']))));
+		foreach (array('signIn', 'signOut') as $event) {
+			if (($redirect = $config[$event]['redirect']) !== NULL) {
+				$class = 'Rixxi\Bridges\UserKdybyEvents\RedirectOn' . ucfirst($event) . 'Subscriber';
+				if (!class_exists($class)) {
+					throw new \RuntimeException("Please install rixxi/redirector package to enable redirect functionality.");
+				}
+				$container->addDefinition($this->prefix('userOn' . ucfirst($event) . 'Redirector'))
+					->setClass($class, array(1 => $redirect))
+					->addTag(Kdyby\Events\DI\EventsExtension::TAG_SUBSCRIBER);
+			}
 		}
 
 		return $config;
