@@ -14,9 +14,7 @@
 	"require": {
 		"nette/nette": "@dev",
 		"kdyby/doctrine": "@dev",
-		"kdyby/annotations": "@dev",
 		"kdyby/events": "@dev",
-		"kdyby/translation": "@dev",
 		"kdyby/console": "@dev",
 		"rixxi/form-factory": "~1.0",
 		"rixxi/modular": "@dev"
