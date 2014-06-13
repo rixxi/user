@@ -91,8 +91,13 @@ class UserExtension extends Nette\DI\CompilerExtension implements Kdyby\Doctrine
 				if (!class_exists($class)) {
 					throw new \RuntimeException("Please install rixxi/redirector package to enable redirect functionality.");
 				}
+				// shift key number from 0 to 1 because first argument of class is a service
+				if (is_array($redirect)) {
+					array_shift($redirect, NULL);
+					unset($redirect[0]);
+				}
 				$container->addDefinition($this->prefix('userOn' . ucfirst($event) . 'Redirector'))
-					->setClass($class, array(1 => $redirect))
+					->setClass($class, is_array($redirect) ? $redirect : array(1 => $redirect))
 					->addTag(Kdyby\Events\DI\EventsExtension::TAG_SUBSCRIBER);
 			}
 		}
